@@ -8,7 +8,7 @@
 //  Copyright (c) 2015年 若水三千. All rights reserved.
 // 截图在这个框架中没使用到不想要的可以移除
 
-import Foundation
+import UIKit
 class InterceptionImage : NSObject {
 var Newimage = UIImage()
 /// 截图

@@ -13,35 +13,7 @@ extension UIImageView {
     private struct AssociatedKeys {
         static var descriptiveNameURL = "ImageViewURLKey"
     }
-
-    ///   根据指定的 url 字符串，下载图像
-    func setImageWithURLString(urlStr:String){
-        
-    if descriptiveNameURL == urlStr {
-       println("地址一致不用重新下载")
-     return
-    }
-        
-    // 更换地址取消上次的下载
-    if (descriptiveNameURL != nil ) {
-       
-      DownloadImageManager.sharedDownImageManager.cancelDownloadWithURLString(descriptiveNameURL!)
-
-        }
-        // 3.1 清空图像
-        self.image = nil
-
-        descriptiveNameURL = urlStr
-
-    DownloadImageManager.sharedDownImageManager.downloadImageOpeartionWithURLString(urlStr, successed: { (image) -> Void in
-        println(image)
-        self.image = image
-
-    }) { (error) -> Void in
-        
-        }
-    }
-  // 运行时相关设置关联对象 (关键作用)
+    // 运行时相关设置关联对象 (关键作用)
     var descriptiveNameURL:String?
         {
         get {
@@ -59,4 +31,34 @@ extension UIImageView {
             }
         }
     }
+
+    ///   根据指定的 url 字符串，下载图像
+    func setImageWithURLString(urlStr:String){
+        
+    if descriptiveNameURL == urlStr {
+       println("地址一致不用重新下载")
+     return
+    }
+        
+    // 更换地址取消上次的下载
+    if (descriptiveNameURL != nil ) {
+       
+      DownloadImageManager.sharedDownImageManager.cancelDownloadWithURLString(descriptiveNameURL!)
+
+        }
+        // 1 清空图像
+        self.image = nil
+
+        descriptiveNameURL = urlStr
+
+    DownloadImageManager.sharedDownImageManager.downloadImageOpeartionWithURLString(urlStr, successed: { (image) -> Void in
+
+        self.image = image
+        self.sizeThatFits(CGSizeMake(image.size.width, image.size.height))
+
+        }) { (error) -> Void in
+        
+        }
+    }
+    
 }

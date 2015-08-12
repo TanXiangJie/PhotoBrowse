@@ -66,26 +66,23 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
             self.truncationimageV.backgroundColor = UIColor.clearColor()
             self.view.addSubview(self.truncationimageV)
             Windows.addSubview(self.view)
-            
             let urlstring = "\(imageBig![self.currentPhotoIndex!])"
             ///  根据指定的 url 字符串，下载图像
             self.ImageWithURLString(urlstring,Number: self.currentPhotoIndex!)
-            
-            
+            // 下载周围其他图片
+            self.selectedIndex = self.currentPhotoIndex!+1
+            for var i:Int = 0; i < imageBig?.count; i++ {
+                var urlstring = "\(imageBig![i])"
+                
+                if i != self.currentPhotoIndex{
+                    
+                self.ImageWithURLString(urlstring, Number: i)
+                }
+            }
+
             }) { _ in
-                self.selectedIndex = self.currentPhotoIndex!+1
                 Windows.rootViewController?.addChildViewController(self)
                 self.saveImaegeBtnAndCancelImageBtn()
-                
-                // 下载周围其他图片
-                for var i:Int = 0; i < imageBig?.count; i++ {
-                    var urlstring = "\(imageBig![i])"
-                    
-                    if i != self.currentPhotoIndex{
-                        
-                        self.ImageWithURLString(urlstring, Number: i)
-                    }
-                }
                 
         }
     }
@@ -94,14 +91,12 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication().statusBarHidden = true
-        self.scrollView.contentOffset.x = CGFloat(currentPhotoIndex!)*W
         self.view.addSubview(scrollView)
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
     }
     /// 懒加载用来提前准备好一段代码
     private lazy var scrollView: UIScrollView = {
@@ -141,33 +136,32 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
     ///   根据指定的 url 字符串，下载图像
     func ImageWithURLString(urlStr:String,Number:Int){
             var imageV = UIImageView()
-        
-            imageV.setImageWithURLString(urlStr)
+              imageV.contentMode = UIViewContentMode.ScaleAspectFit
             imageV.userInteractionEnabled = true
-            if imageV.image?.size != nil{
                 var imageW:CGFloat = W
                 var imageH:CGFloat = H
                 var imageX = CGFloat(Number)*W
-                // 如果图片的宽度大于屏幕的宽度
-                if imageW > W {
-                    imageH = imageH * W / imageW // 按比例缩放
-                    imageW = W
-                }else{
-                    
-                    imageX += (W - imageW)/2
-                }
+//                // 如果图片的宽度大于屏幕的宽度
+//                if imageW > W {
+//                    imageH = imageH * W / imageW // 按比例缩放
+//                    imageW = W
+//                }else{
+//                    
+//                    imageX += (W - imageW)/2
+//                }
                 var imageY = imageH > H ? 0 : (H - imageH)/2
-                
+//                
+//
+//                var h = imageBig?.count == 1 ? imageH : 0
+                self.scrollView.contentSize = CGSizeMake(CGFloat(imageBig!.count)*W,0)
+                self.scrollView.contentOffset.x = CGFloat(currentPhotoIndex!)*W
 
-                var h = imageBig?.count == 1 ? imageH : 0
-                self.scrollView.contentSize = CGSizeMake(CGFloat(imageBig!.count)*W,h)
                 imageV.frame = CGRectMake(imageX,imageY,imageW ,imageH)
-                // 临时存放图片对象
-                SVProgressHUD.dismiss()
+
                 self.scrollView.addSubview(imageV)
                 self.truncationimageV.hidden = true
-
-            }
+                imageV.setImageWithURLString(urlStr)
+        
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {

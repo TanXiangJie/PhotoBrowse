@@ -10,7 +10,6 @@
 
 import UIKit
 import ImageIO
-
 class GIFImage : NSObject {
     
     func animatedGIFWithData(imageData:NSData?)->UIImage{

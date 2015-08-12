@@ -35,39 +35,33 @@ class DownloadImageOperation: NSOperation{
                 if data == nil {
                     return
                 }
-
+                
                 data!.writeToFile(self.urlStr!.md5!.cacheDir(), atomically: true)
                 println(self.urlStr!.cacheDir())
                 if self.cancelled{return}
-              dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 // 3. 调用回调方法
                 var image = UIImage(data: data!)
                 if (self.cancelled){return}
                 
-                if (self.successed != nil && image != nil ){
-                    
-                    println("下载完毕")
-                    println(image)
-                    
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                if self.urlStr!.hasSuffix("gif"){
-//                    let Gif = GIFImage()
-//                            
-//                self.successed!(image:Gif.animatedGIFWithData(data))
-//                            
-//                return
-//                }
-               self.successed!(image: image!)
+                    if (self.successed != nil && image != nil ){
+                        
+                        println(image)
+                        if self.urlStr!.hasSuffix("gif"){
+                            let Gif = GIFImage()
+                            self.successed!(image:animatedGIFWithData(data))
+                            return
+                        }
+                        self.successed!(image: image!)
                         println("下载完毕")
-            })
-
-//                    self.successed!(image: image!)
-                }
-                if (self.failed != nil && image == nil ){
-                    self.failed!(error: "下载失败")
-                }
-
-              })
+                        
+                    }
+                    
+                    if (self.failed != nil && image == nil ){
+                        self.failed!(error: "下载失败")
+                    }
+                    
+                })
                 
             }
             

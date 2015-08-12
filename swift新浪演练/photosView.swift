@@ -77,7 +77,8 @@ class photosView: UIView {
                 var imageV:UIImageView = self.subviews[i] as! UIImageView
                if i < imageURLs?.count{
                 var imageURL:String = "\(imageURLs![i])"
-                imageV.sd_setImageWithURL(imageURLs![i])
+               // imageV.sd_setImageWithURL(imageURLs![i])
+                imageV.setImageWithURLString("\(imageURLs![i])")
                 imageV.contentMode = UIViewContentMode.ScaleAspectFit
                 imageV.backgroundColor = UIColor.groupTableViewBackgroundColor()
                 imageV.frame = CGRectMake(photoX, photoY, 100,100)

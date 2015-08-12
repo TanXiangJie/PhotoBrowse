@@ -10,7 +10,7 @@ import UIKit
 extension String{
     func cacheDir()->String{
         let cacheDirPath = (NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory, NSSearchPathDomainMask.UserDomainMask,true).last as!String)
-        
+             
         return cacheDirPath.stringByAppendingPathComponent(self.lastPathComponent)
     }
     
@@ -23,6 +23,18 @@ extension String{
         
         return NSTemporaryDirectory().stringByAppendingPathComponent(self.lastPathComponent)
     }
-    
+    var md5: String! {
+        let str = self.cStringUsingEncoding(NSUTF8StringEncoding)
+        let strLen = CC_LONG(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
+        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        CC_MD5(str!, strLen, result)
+        var hash = NSMutableString()
+        for i in 0..<digestLen {
+            hash.appendFormat("%02x", result[i])
+        }
+        return String(format:hash as String)
+    }
+
 }
 

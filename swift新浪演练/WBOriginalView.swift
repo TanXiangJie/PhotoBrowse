@@ -68,8 +68,8 @@ class WBOriginalView: UIView {
         var homeStatus:StatusResult = homeV!.status!
             
         iconView?.frame = homeV!.originalityIocnFrame!
-        iconView?.sd_setImageWithURL(NSURL(string: homeStatus.user.profile_image_url), placeholderImage: UIImage(named: "timeline_image_placeholder"))
-           
+//        iconView?.sd_setImageWithURL(NSURL(string: homeStatus.user.profile_image_url), placeholderImage: UIImage(named: "timeline_image_placeholder"))
+         iconView?.setImageWithURLString(homeStatus.user.profile_image_url)
         nameView?.frame = homeV!.originalitynameFrame!
         nameView?.text = homeStatus.user.name
         

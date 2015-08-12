@@ -41,6 +41,7 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
         superV = imageV.superview
         originality = imageV.frame
         truncationimageV.image = imageV.image!
+        
 //      截图后获得新图片
 //        let interception = InterceptionImage()
 //       truncationimageV.image interception.setSrcImageView(imageV)
@@ -50,29 +51,57 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
         
         
     }
+    // 进场
+    func approachImageV(){
+        var Windows:UIWindow = UIApplication.sharedApplication().keyWindow!
+        transition.type = imageType[rndtype()]
+        transition.subtype  = kCATransitionFromLeft;
+        transition.duration = 0.5;
+        Windows.layer.addAnimation(transition, forKey: nil)
+        
+        UIView.animateWithDuration(2.0, delay: 1, usingSpringWithDamping: 0.8, initialSpringVelocity: 5.0, options: UIViewAnimationOptions.TransitionCurlUp, animations: {
+            self.truncationimageV.frame = self.view.frame
+            self.truncationimageV.contentMode = UIViewContentMode.ScaleAspectFit
+            self.truncationimageV.userInteractionEnabled = false
+            self.truncationimageV.backgroundColor = UIColor.clearColor()
+            self.view.addSubview(self.truncationimageV)
+            Windows.addSubview(self.view)
+            
+            let urlstring = "\(imageBig![self.currentPhotoIndex!])"
+            ///  根据指定的 url 字符串，下载图像
+            self.ImageWithURLString(urlstring,Number: self.currentPhotoIndex!)
+            
+            
+            }) { _ in
+                self.selectedIndex = self.currentPhotoIndex!+1
+                Windows.rootViewController?.addChildViewController(self)
+                self.saveImaegeBtnAndCancelImageBtn()
+                
+                // 下载周围其他图片
+                for var i:Int = 0; i < imageBig?.count; i++ {
+                    var urlstring = "\(imageBig![i])"
+                    
+                    if i != self.currentPhotoIndex{
+                        
+                        self.ImageWithURLString(urlstring, Number: i)
+                    }
+                }
+                
+        }
+    }
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarHidden = true
         self.scrollView.contentOffset.x = CGFloat(currentPhotoIndex!)*W
-        let urlstring = "\(imageBig![currentPhotoIndex!])"
-        ///  根据指定的 url 字符串，下载图像
-        setImageWithURLString(urlstring,Number: currentPhotoIndex!)
-    
         self.view.addSubview(scrollView)
         
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-      // 下载周围其他图片
-        for var i:Int = 0; i < imageBig?.count; i++ {
-            var urlstring = "\(imageBig![i])"
-            if i != currentPhotoIndex{
-                setImageWithURLString(urlstring, Number: i)
-            }
-        }
     }
     /// 懒加载用来提前准备好一段代码
     private lazy var scrollView: UIScrollView = {
@@ -110,32 +139,14 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
     
     
     ///   根据指定的 url 字符串，下载图像
-    func setImageWithURLString(urlStr:String,Number:Int){
-        println(urlStr)
+    func ImageWithURLString(urlStr:String,Number:Int){
+            var imageV = UIImageView()
         
-        if urlstring == urlStr {
-            println("地址一致，等待下载结束")
-            return
-            
-        }
-        //            if (urlstring != nil) {
-        //             do.cancelDownloadWithURLString(urlstring!)
-        //
-        //                }
-        //
-        urlstring = urlStr
-        // 3.1 清空图像
-        //self.image = nil
-        
-        instanceDownload.downloadImageOpeartionWithURLString(urlStr, successed: { (image) -> Void in
-            var imageV:UIImageView = UIImageView()
-            imageV.image = image
+            imageV.setImageWithURLString(urlStr)
             imageV.userInteractionEnabled = true
             if imageV.image?.size != nil{
-                
-                self.truncationimageV.hidden = true
-                var imageW:CGFloat = imageV.image!.size.width
-                var imageH:CGFloat = imageV.image!.size.height
+                var imageW:CGFloat = W
+                var imageH:CGFloat = H
                 var imageX = CGFloat(Number)*W
                 // 如果图片的宽度大于屏幕的宽度
                 if imageW > W {
@@ -147,17 +158,17 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
                 }
                 var imageY = imageH > H ? 0 : (H - imageH)/2
                 
-                imageV.frame = CGRectMake(imageX,imageY,imageW ,imageH)
-                var h = imageH > H ? imageH:0
+
+                var h = imageBig?.count == 1 ? imageH : 0
                 self.scrollView.contentSize = CGSizeMake(CGFloat(imageBig!.count)*W,h)
+                imageV.frame = CGRectMake(imageX,imageY,imageW ,imageH)
                 // 临时存放图片对象
+                SVProgressHUD.dismiss()
                 self.scrollView.addSubview(imageV)
+                self.truncationimageV.hidden = true
+
             }
-            
-        })
-        
     }
-    
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         var Index:Int = Int((scrollView.contentOffset.x + 0.5 * scrollView.frame.size.width)/scrollView.frame.size.width)
@@ -228,17 +239,16 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
         // 成功
         SVProgressHUD.show()
         dispatch_async(dispatch_get_global_queue(0, 0), { () -> Void in
-            var image:AnyObject? = self.instanceDownload.imagesCache.objectForKey(self.urlstring!)
+            var image:AnyObject? = self.instanceDownload.imagesCache.objectForKey(self.urlstring!.md5)
             if  image != nil {
                 //            从缓存中读取并保存
                 println("从缓存中读取并保存")
-                println(self.urlstring!.cacheDir())
                 
                 UIImageWriteToSavedPhotosAlbum(image as!UIImage, self, Selector("image:didFinishSavingWithError:contextInfo:"), nil)
             }else {
                 // 存内存中读取保存
                 println("存内存中读取保存")
-                image = UIImage(contentsOfFile: self.urlstring!.cacheDir())
+                image = UIImage(contentsOfFile: self.urlstring!.md5.cacheDir())
                 UIImageWriteToSavedPhotosAlbum(image as!UIImage, self, Selector("image:didFinishSavingWithError:contextInfo:"), nil)
             }
             
@@ -290,31 +300,6 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
         }
         
     }
-    // 进场
-    func approachImageV(){
-        var Windows:UIWindow = UIApplication.sharedApplication().keyWindow!
-        transition.type = imageType[rndtype()]
-        transition.subtype  = kCATransitionFromLeft;
-        transition.duration = 0.5;
-        Windows.layer.addAnimation(transition, forKey: nil)
-        
-        UIView.animateWithDuration(2.0, delay: 1, usingSpringWithDamping: 0.8, initialSpringVelocity: 5.0, options: UIViewAnimationOptions.TransitionCurlUp, animations: {
-            self.truncationimageV.frame = self.view.frame
-            self.truncationimageV.contentMode = UIViewContentMode.ScaleAspectFit
-            self.truncationimageV.userInteractionEnabled = false
-            self.truncationimageV.backgroundColor = UIColor.clearColor()
-            self.view.addSubview(self.truncationimageV)
-            Windows.addSubview(self.view)
-            
-            }) { _ in
-                
-        self.selectedIndex = self.currentPhotoIndex!+1
-        Windows.rootViewController?.addChildViewController(self)
-        self.saveImaegeBtnAndCancelImageBtn()
-                
-        }
-    }
-    
     
     /// 清理内存缓存
     override func didReceiveMemoryWarning() {

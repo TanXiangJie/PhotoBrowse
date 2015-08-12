@@ -42,8 +42,8 @@ class UserpageViewController: UIViewController {
         let urlString = sharedUserAccount?.avatar_large
         if  urlString != nil{
 
-        iconImage!.sd_setImageWithURL(NSURL(string: urlString!), placeholderImage: image)
-            
+//        iconImage!.sd_setImageWithURL(NSURL(string: urlString!), placeholderImage: image)
+         iconImage?.setImageWithURLString(urlString!)
         }
         
     }

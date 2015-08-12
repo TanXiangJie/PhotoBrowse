@@ -7,6 +7,7 @@
 //
 
 #import "AFNetworking.h"
-#import "UIImageView+WebCache.h"
 #import "SVIndefiniteAnimatedView.h"
 #import "SVProgressHUD.h"
+// 加密
+#import <CommonCrypto/CommonCrypto.h>

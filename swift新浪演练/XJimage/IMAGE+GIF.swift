@@ -37,8 +37,9 @@ class GIFImage : NSObject {
                     duration = 0.10 * Double(Count)
                 }
                 animatedImage = UIImage.animatedImageWithImages(images as [AnyObject], duration: duration)
-            }
             
+            }
+        
         }
         return animatedImage
         
@@ -66,8 +67,6 @@ class GIFImage : NSObject {
                 duration = 0.1
             }
         }
-//    swift 字典数组转模型数组 ,和字典转模型 https://github.com/TanXiangJie/XJruntime.git
-
         return duration
  }
 }

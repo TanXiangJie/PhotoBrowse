@@ -15,17 +15,23 @@ var array1 = NSMutableArray()
 private let identifier = "reuseIdentifier"
 
 class HomeViewController: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       self.tableView.registerClass(HomeTableViewCell.self, forCellReuseIdentifier:identifier)
-        
+        self.tableView.registerClass(HomeTableViewCell.self, forCellReuseIdentifier:identifier)
         self.view.backgroundColor = UIColor.whiteColor()
         let tabBar = MainTabBar()
         self.navigationItem.leftBarButtonItem = tabBar.addLeftOrRightBtn(nil, Leftimage:"navigationbar_friendsearch", targer: self, action: Selector("puchVC"))
+            loadData()
+        
+    
+    }
+    
+    func loadData(){
         
         var parames = ["access_token":sharedUserAccount!.access_token,"since_id":"0","page":"1","count":"50"]
+        
         NetWorkTools.requestJSON(Method.GET, URLString: WB_HOME_LINE_URL, parameters: parames) { (JSON) -> () in
             
             if JSON != nil {
@@ -33,7 +39,6 @@ class HomeViewController: UITableViewController {
                 if (JSON!.objectForKey("statuses") != nil){
                     // 实例化一个可变的数组
                     var array = NSMutableArray()
-                  println(JSON!)
                     for dict in JSON!.objectForKey("statuses") as! [AnyObject]{
                         //  将字典转换成模型
                         var status:StatusResult =  StatusResult.objectWithKeyValues(dict as! NSDictionary)
@@ -47,14 +52,13 @@ class HomeViewController: UITableViewController {
                     self.tableView.reloadData()
                     
                 }
-                
-                
-
+            }
+            
         }
 
-    }
     
     }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array1.count
     }

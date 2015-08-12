@@ -54,7 +54,6 @@ extension UIImageView {
     DownloadImageManager.sharedDownImageManager.downloadImageOpeartionWithURLString(urlStr, successed: { (image) -> Void in
 
         self.image = image
-        self.sizeThatFits(CGSizeMake(image.size.width, image.size.height))
 
         }) { (error) -> Void in
         

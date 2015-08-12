@@ -8,47 +8,57 @@
 
 import UIKit
 class DownloadImageOperation: NSOperation{
-    var urlStr:String?
+    
+    var imageURL:String?
     var URLSTR:NSURL?
     var successed:((image:UIImage)->Void)?
     var failed:((error:String)->Void)?
     
-    class func downloadImageOpeartionWithURLString(urlString:String,successed:(image:UIImage?)->Void,failed:(error:String)->Void)->DownloadImageOperation{
+    class func downloadImageOpeartionWithURLString(imageUrl:String,successed:(image:UIImage?)->Void,failed:(error:String)->Void)->DownloadImageOperation{
         
         var op:DownloadImageOperation = DownloadImageOperation()
-        op.urlStr = urlString
+        op.imageURL = imageUrl
         op.successed = successed
         op.failed = failed
         return op
     }
     
     override func main(){
+       
         super.main()
+        
         autoreleasepool { () -> () in
-            // 1. 根据 url 下载图像
-            if self.cancelled{return}
-            if urlStr != nil && urlStr != ""{
-                URLSTR = NSURL(string: urlStr!)
+            
+            if self.cancelled{return} // 任务取消
+            
+            if imageURL != nil && imageURL != ""{
+                
+                URLSTR = NSURL(string: imageURL!)
+                
                 var data = NSData(contentsOfURL:URLSTR!)
                 
-                if self.cancelled{return}
-                if data == nil {return}
+                if self.cancelled || data == nil{return}
+                // 将图片的url地址MD5保证唯一性
+                data!.writeToFile(self.imageURL!.md5!.cacheDir(), atomically: true)
                 
-                data!.writeToFile(self.urlStr!.md5!.cacheDir(), atomically: true)
-                
                 if self.cancelled{return}
+                
                 var image = UIImage(data: data!)
+                
                 if (self.cancelled){return}
-              
+                
                 // 3. 调用回调方法
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     if (self.successed != nil && image != nil ){
                         
-                        if self.urlStr!.hasSuffix("gif"){
+                        if self.imageURL!.hasSuffix("gif"){
                             let Gif = GIFImage()
+                            
                             self.successed!(image:Gif.animatedGIFWithData(data))
                             return
+                            
                         }
+                        
                         self.successed!(image: image!)
                         println("下载完毕")
                         

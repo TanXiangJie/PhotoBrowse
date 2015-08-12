@@ -78,8 +78,7 @@
 		87D420161B7BB2F7002E0244 /* DownloadImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D420101B7BB2F7002E0244 /* DownloadImageOperation.swift */; };
 		87D420171B7BB2F7002E0244 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D420111B7BB2F7002E0244 /* FilePath.swift */; };
 		87D420181B7BB2F7002E0244 /* IMAGE+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D420121B7BB2F7002E0244 /* IMAGE+GIF.swift */; };
-		87D420191B7BB2F7002E0244 /* InterceptionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D420131B7BB2F7002E0244 /* InterceptionImage.swift */; };
-		87D4201A1B7BB2F7002E0244 /* XJimage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D420141B7BB2F7002E0244 /* XJimage.swift */; };
+		87D4201A1B7BB2F7002E0244 /* webImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D420141B7BB2F7002E0244 /* webImage.swift */; };
 		87E5F56C1B610C4C004D5C0D /* WBOriginalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F56B1B610C4C004D5C0D /* WBOriginalView.swift */; };
 		87E5F56E1B610C63004D5C0D /* WBstatusToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F56D1B610C63004D5C0D /* WBstatusToolBar.swift */; };
 		87E5F5701B610C82004D5C0D /* WBretweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F56F1B610C82004D5C0D /* WBretweetView.swift */; };
@@ -188,8 +187,7 @@
 		87D420101B7BB2F7002E0244 /* DownloadImageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImageOperation.swift; sourceTree = "<group>"; };
 		87D420111B7BB2F7002E0244 /* FilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
 		87D420121B7BB2F7002E0244 /* IMAGE+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IMAGE+GIF.swift"; sourceTree = "<group>"; };
-		87D420131B7BB2F7002E0244 /* InterceptionImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterceptionImage.swift; sourceTree = "<group>"; };
-		87D420141B7BB2F7002E0244 /* XJimage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XJimage.swift; sourceTree = "<group>"; };
+		87D420141B7BB2F7002E0244 /* webImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = webImage.swift; sourceTree = "<group>"; };
 		87D4201B1B7BB7E4002E0244 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		87E5F56B1B610C4C004D5C0D /* WBOriginalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBOriginalView.swift; sourceTree = "<group>"; };
 		87E5F56D1B610C63004D5C0D /* WBstatusToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBstatusToolBar.swift; sourceTree = "<group>"; };
@@ -388,8 +386,7 @@
 				87D420101B7BB2F7002E0244 /* DownloadImageOperation.swift */,
 				87D420111B7BB2F7002E0244 /* FilePath.swift */,
 				87D420121B7BB2F7002E0244 /* IMAGE+GIF.swift */,
-				87D420131B7BB2F7002E0244 /* InterceptionImage.swift */,
-				87D420141B7BB2F7002E0244 /* XJimage.swift */,
+				87D420141B7BB2F7002E0244 /* webImage.swift */,
 			);
 			path = webImage;
 			sourceTree = "<group>";
@@ -534,7 +531,7 @@
 				871488DA1B53C6E300B3DD2D /* AFSecurityPolicy.h in Sources */,
 				87EE61BD1B56D8870045E52B /* NewFeatureViewController.swift in Sources */,
 				878F7BBC1B5F892900B69CFC /* NSDate+Extension.swift in Sources */,
-				87D4201A1B7BB2F7002E0244 /* XJimage.swift in Sources */,
+				87D4201A1B7BB2F7002E0244 /* webImage.swift in Sources */,
 				871488DB1B53C6E300B3DD2D /* AFURLConnectionOperation.h in Sources */,
 				871489111B55306600B3DD2D /* NetWorkTools.swift in Sources */,
 				879E3F681B64BA7400A55FFF /* photosView.swift in Sources */,
@@ -563,7 +560,6 @@
 				8714868A1B5230B300B3DD2D /* HomeViewController.swift in Sources */,
 				871486881B52303800B3DD2D /* MainTabBar.swift in Sources */,
 				8714890D1B54DEA300B3DD2D /* OAuthViewController.swift in Sources */,
-				87D420191B7BB2F7002E0244 /* InterceptionImage.swift in Sources */,
 				878F7BB41B5F7EE400B69CFC /* HomeTableViewCell.swift in Sources */,
 				871488381B53603A00B3DD2D /* UIimage+Extension.swift in Sources */,
 				871486901B52480500B3DD2D /* MeViewController.swift in Sources */,

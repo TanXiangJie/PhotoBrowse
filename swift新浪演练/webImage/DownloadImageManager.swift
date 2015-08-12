@@ -34,7 +34,9 @@ class DownloadImageManager :NSObject {
         opQ.maxConcurrentOperationCount = 3
         return opQ
         }()
+    
     let Gif = GIFImage()
+    
     // 下载指定的URL的图像
     func  downloadImageOpeartionWithURLString(imageURL:String,successed:(image:UIImage)->Void,failed:(error:String)->Void){
         
@@ -42,7 +44,7 @@ class DownloadImageManager :NSObject {
         var image = self.imagesCache.objectForKey(imageURL) as! UIImage?
         if image != nil  {
             
-            if imageURL.hasSuffix("gif"){
+            if imageURL.hasSuffix("gif"){ // 必须去磁盘拿gif图片
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     var data = NSData(contentsOfFile: imageURL.md5.cacheDir())
                     successed(image:self.Gif.animatedGIFWithData(data))
@@ -85,7 +87,9 @@ class DownloadImageManager :NSObject {
         var downLoadOP = DownloadImageOperation.downloadImageOpeartionWithURLString(imageURL, successed: { (image) -> Void in
             
             if (image != nil){
+                
                 var cost:intmax_t = intmax_t( image!.size.width * image!.size.height)
+                 // 指定成本更加科学
                 self.imagesCache.totalCostLimit = 4 * 10
                 
                 self.imagesCache.setObject(image!, forKey: imageURL, cost: cost)
@@ -93,7 +97,6 @@ class DownloadImageManager :NSObject {
             // 下载完成之后，删除操作缓存
             self.operationsCache.removeObjectForKey(imageURL)
             
-            println(image!)
             successed(image: image!)
             
             }, failed: failed)
@@ -102,7 +105,6 @@ class DownloadImageManager :NSObject {
         self.operationsCache.setValue(downLoadOP, forKey: imageURL)
         // 3. 将下载操作添加到队列
         self.opQueue.addOperation(downLoadOP)
-        
         
     }
     
@@ -119,6 +121,7 @@ class DownloadImageManager :NSObject {
         self.operationsCache.removeObjectForKey(urlString)
         println("取消下载操作")
     }
+    
     // 需手动内存清理工作
     func clearMemory(){
         self.operationsCache.removeAllObjects()

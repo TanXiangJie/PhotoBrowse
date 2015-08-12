@@ -1,7 +1,7 @@
 
 //
 //  XJimage.swift
-//  名人段子
+//  swift新浪演练
 //
 //  Created by 若水三千 on 15/8/6.
 //  Copyright (c) 2015年 若水三千. All rights reserved.
@@ -60,5 +60,5 @@ extension UIImageView {
         
         }
     }
-    
+ 
 }

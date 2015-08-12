@@ -68,4 +68,21 @@ class GIFImage : NSObject {
         }
         return duration
  }
+    /////////////////////////// 这里没有使用过截图/////////////可以移除
+
+    private func capture(view:UIView)->UIImage{
+        
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0.0);
+        view.layer.renderInContext(UIGraphicsGetCurrentContext())
+        var img:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img;
+    }
+    /// 获得截图图片
+    func setSrcImageView(srcImageView:UIImageView)->UIImage
+    {
+       return capture(srcImageView)
+    
+    }
+    
 }

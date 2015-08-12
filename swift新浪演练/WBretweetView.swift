@@ -47,12 +47,13 @@ class WBretweetView: UIView {
         didSet{
 
             var homeStatus:StatusResult = homeV!.status!.retweeted_status!
-            
-            nameView?.frame = homeV!.transmitNameFrame!
-            nameView?.text = "@\(homeStatus.user.name)"
+            if homeV?.transmitNameFrame != nil {
+                nameView?.frame = homeV!.transmitNameFrame!
+                nameView?.text = "@\(homeStatus.user.name)"
+                textView?.text = homeStatus.text
+                textView?.frame = homeV!.transmitTextFrame!
 
-            textView?.text = homeStatus.text
-            textView?.frame = homeV!.transmitTextFrame!
+            }
             
             if homeStatus.pic_urls.count>0{
                 photosV?.hidden = false

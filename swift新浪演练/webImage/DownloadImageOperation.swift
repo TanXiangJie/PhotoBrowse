@@ -32,24 +32,21 @@ class DownloadImageOperation: NSOperation{
                 var data = NSData(contentsOfURL:URLSTR!)
                 
                 if self.cancelled{return}
-                if data == nil {
-                    return
-                }
+                if data == nil {return}
                 
                 data!.writeToFile(self.urlStr!.md5!.cacheDir(), atomically: true)
-                println(self.urlStr!.cacheDir())
+                
                 if self.cancelled{return}
-                // 3. 调用回调方法
                 var image = UIImage(data: data!)
                 if (self.cancelled){return}
-                
+              
+                // 3. 调用回调方法
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     if (self.successed != nil && image != nil ){
                         
-                        println(image)
                         if self.urlStr!.hasSuffix("gif"){
                             let Gif = GIFImage()
-                            self.successed!(image:animatedGIFWithData(data))
+                            self.successed!(image:Gif.animatedGIFWithData(data))
                             return
                         }
                         self.successed!(image: image!)

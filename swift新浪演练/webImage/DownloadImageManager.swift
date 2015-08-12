@@ -11,12 +11,15 @@ class DownloadImageManager :NSObject {
     
     // GCD 单例模式
     class var sharedDownImageManager: DownloadImageManager {
-        dispatch_once(&Inner.token) {
-            Inner.instance = DownloadImageManager()
+        dispatch_once(&Inner.token)
+            {
+                Inner.instance = DownloadImageManager()
         }
+        
         return Inner.instance!
     }
     private struct Inner {
+        
         static var instance: DownloadImageManager?
         static var token: dispatch_once_t = 0
     }
@@ -32,7 +35,6 @@ class DownloadImageManager :NSObject {
         return opQ
         }()
     let Gif = GIFImage()
-    
     // 下载指定的URL的图像
     func  downloadImageOpeartionWithURLString(imageURL:String,successed:(image:UIImage)->Void,failed:(error:String)->Void){
         
@@ -61,7 +63,7 @@ class DownloadImageManager :NSObject {
             
             var cost = intmax_t(imageCacheDir!.size.width * imageCacheDir!.size.width)
             if imageURL.hasSuffix("gif"){
-                /// 一定要在主线程更新不然等着卡爆吧
+                /// 一定要异步在主线程更新不然等着卡爆吧
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     var data = NSData(contentsOfFile: imageURL.md5.cacheDir())
                     successed(image:self.Gif.animatedGIFWithData(data))

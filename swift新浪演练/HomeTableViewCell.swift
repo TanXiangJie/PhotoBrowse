@@ -52,8 +52,9 @@ class HomeTableViewCell: UITableViewCell {
                 //   设置转发微薄的内容
                 retweetV?.homeV = home
                 //   这只转发微博的frame
+                if home!.transmitFrame != nil {
                 retweetV?.frame = home!.transmitFrame!
-                
+                }
             }
             //   设置工具条frame
             statusToolBar?.frame = home!.statusToolBarFrame!

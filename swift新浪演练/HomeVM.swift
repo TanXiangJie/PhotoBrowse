@@ -32,7 +32,7 @@ class HomeVM: NSObject {
     var transmit:String?
     /// VIP
     var Vipimage:UIImage?
-//    /// 来源
+  /// 来源
     var source:String?
 
     // 微博创建时间
@@ -77,10 +77,9 @@ class HomeVM: NSObject {
         
         // 得到最大的Y值
         var Y:CGFloat = CGRectGetMaxY(originalityFrame!)
-
         // 有没有转发微博
-        if status!.retweeted_status != nil {
-            transmit = "@\(status!.retweeted_status?.user.name)"
+        if status!.retweeted_status?.user != nil {
+            transmit = status!.retweeted_status?.user.name
             setUpTransmitWB()
             
             Y = CGRectGetMaxY(transmitFrame!)

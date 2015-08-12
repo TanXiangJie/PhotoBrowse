@@ -37,7 +37,7 @@ import UIKit
 //    //    user	object	微博作者的用户信息字段 详细
 //    var user = NSDictionary()
 //    //    retweeted_status	object	被转发的原微博信息字段，当该微博为转发微博时返回 详细
-    var retweeted_status : StatusResult?
+    var retweeted_status :StatusResult?
 //
 //    //    reposts_count	int	转发数
     var reposts_count = String()

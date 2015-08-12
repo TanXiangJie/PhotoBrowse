@@ -6,9 +6,9 @@
 //  Created by 若水三千 on 15/8/6.
 //  Copyright (c) 2015年 若水三千. All rights reserved.
 //
+// 在ProjectName-Bridging-Header.h中添加#import<CommonCrypto/CommonCrypto.h>
 
 import UIKit
-
 extension UIImageView {
     private struct AssociatedKeys {
         static var descriptiveNameURL = "ImageViewURLKey"

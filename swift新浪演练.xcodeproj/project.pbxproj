@@ -66,7 +66,6 @@
 		871489191B553E3500B3DD2D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 871489151B553E3500B3DD2D /* SVProgressHUD.bundle */; };
 		8714891A1B553E3500B3DD2D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 871489171B553E3500B3DD2D /* SVProgressHUD.m */; };
 		8714891C1B567E4000B3DD2D /* UserpageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8714891B1B567E4000B3DD2D /* UserpageViewController.swift */; };
-		87718C281B57F41C004BFA05 /* MJExtion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87718C271B57F41C004BFA05 /* MJExtion.swift */; };
 		878F7BB41B5F7EE400B69CFC /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F7BB31B5F7EE400B69CFC /* HomeTableViewCell.swift */; };
 		878F7BB61B5F81AF00B69CFC /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F7BB51B5F81AF00B69CFC /* HomeVM.swift */; };
 		878F7BBC1B5F892900B69CFC /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F7BBB1B5F892900B69CFC /* NSDate+Extension.swift */; };
@@ -74,6 +73,7 @@
 		879589571B592122002DA3AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879589561B592122002DA3AE /* User.swift */; };
 		879E3F661B6485BE00A55FFF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E3F651B6485BE00A55FFF /* String+Extension.swift */; };
 		879E3F681B64BA7400A55FFF /* photosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E3F671B64BA7400A55FFF /* photosView.swift */; };
+		87CAFA1A1B7FCB3B0088CF6F /* XJruntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CAFA191B7FCB3A0088CF6F /* XJruntime.swift */; };
 		87D420151B7BB2F7002E0244 /* DownloadImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D4200F1B7BB2F7002E0244 /* DownloadImageManager.swift */; };
 		87D420161B7BB2F7002E0244 /* DownloadImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D420101B7BB2F7002E0244 /* DownloadImageOperation.swift */; };
 		87D420171B7BB2F7002E0244 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D420111B7BB2F7002E0244 /* FilePath.swift */; };
@@ -175,7 +175,6 @@
 		871489161B553E3500B3DD2D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		871489171B553E3500B3DD2D /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		8714891B1B567E4000B3DD2D /* UserpageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserpageViewController.swift; sourceTree = "<group>"; };
-		87718C271B57F41C004BFA05 /* MJExtion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJExtion.swift; sourceTree = "<group>"; };
 		878F7BB31B5F7EE400B69CFC /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		878F7BB51B5F81AF00B69CFC /* HomeVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
 		878F7BBB1B5F892900B69CFC /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
@@ -183,6 +182,7 @@
 		879589561B592122002DA3AE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		879E3F651B6485BE00A55FFF /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		879E3F671B64BA7400A55FFF /* photosView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photosView.swift; sourceTree = "<group>"; };
+		87CAFA191B7FCB3A0088CF6F /* XJruntime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XJruntime.swift; sourceTree = "<group>"; };
 		87D4200F1B7BB2F7002E0244 /* DownloadImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImageManager.swift; sourceTree = "<group>"; };
 		87D420101B7BB2F7002E0244 /* DownloadImageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImageOperation.swift; sourceTree = "<group>"; };
 		87D420111B7BB2F7002E0244 /* FilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
@@ -253,6 +253,7 @@
 				871488A91B53C69700B3DD2D /* UIKit+AFNetworking */,
 				8714888E1B53C4C300B3DD2D /* AFNetworking.h */,
 				87D4200E1B7BB2F7002E0244 /* webImage */,
+				87CAFA1B1B7FCBB60088CF6F /* 字典转模型 */,
 				871486651B522FCD00B3DD2D /* AppDelegate.swift */,
 				8714890C1B54DEA300B3DD2D /* OAuthViewController.swift */,
 				8711FB0B1B6FA0ED0051E7C7 /* PhotoBrowser.swift */,
@@ -274,7 +275,6 @@
 				879589561B592122002DA3AE /* User.swift */,
 				879589541B591B2B002DA3AE /* photos.swift */,
 				87EE61DC1B57B1420045E52B /* StatusResult.swift */,
-				87718C271B57F41C004BFA05 /* MJExtion.swift */,
 				87EE61D81B57872A0045E52B /* AddFriendsViewController.swift */,
 				8714868B1B5247AE00B3DD2D /* msgViewController.swift */,
 				8714868D1B5247E200B3DD2D /* DiscoverViewController.swift */,
@@ -376,6 +376,14 @@
 				871489171B553E3500B3DD2D /* SVProgressHUD.m */,
 			);
 			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		87CAFA1B1B7FCBB60088CF6F /* 字典转模型 */ = {
+			isa = PBXGroup;
+			children = (
+				87CAFA191B7FCB3A0088CF6F /* XJruntime.swift */,
+			);
+			name = "字典转模型";
 			sourceTree = "<group>";
 		};
 		87D4200E1B7BB2F7002E0244 /* webImage */ = {
@@ -537,6 +545,7 @@
 				879E3F681B64BA7400A55FFF /* photosView.swift in Sources */,
 				871488DC1B53C6E300B3DD2D /* AFURLRequestSerialization.h in Sources */,
 				871488DD1B53C6E300B3DD2D /* AFURLResponseSerialization.h in Sources */,
+				87CAFA1A1B7FCB3B0088CF6F /* XJruntime.swift in Sources */,
 				871488DE1B53C6E300B3DD2D /* AFURLSessionManager.h in Sources */,
 				871488DF1B53C6E300B3DD2D /* AFNetworkActivityIndicatorManager.h in Sources */,
 				871488D61B53C6D400B3DD2D /* AFHTTPRequestOperation.h in Sources */,
@@ -595,7 +604,6 @@
 				871488361B52E61B00B3DD2D /* ComposeVeiw.swift in Sources */,
 				871486661B522FCD00B3DD2D /* AppDelegate.swift in Sources */,
 				871488C61B53C69700B3DD2D /* UIAlertView+AFNetworking.m in Sources */,
-				87718C281B57F41C004BFA05 /* MJExtion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

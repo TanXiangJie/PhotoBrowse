@@ -44,14 +44,6 @@ class DownloadImageManager :NSObject {
         var image = self.imagesCache.objectForKey(imageURL) as! UIImage?
         if image != nil  {
             
-            if imageURL.hasSuffix("gif"){ // 必须去磁盘拿gif图片
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    var data = NSData(contentsOfFile: imageURL.md5.cacheDir())
-                    successed(image:self.Gif.animatedGIFWithData(data))
-                    return
-                    
-                })
-            }
             println("从内存加载图像")
             // 直接回调，不再继续
             successed(image: image!)
@@ -62,22 +54,23 @@ class DownloadImageManager :NSObject {
         
         if (imageCacheDir != nil)  {
             println("从磁盘加载")
-            
-            var cost = intmax_t(imageCacheDir!.size.width * imageCacheDir!.size.width)
             if imageURL.hasSuffix("gif"){
                 /// 一定要异步在主线程更新不然等着卡爆吧
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     var data = NSData(contentsOfFile: imageURL.md5.cacheDir())
                     successed(image:self.Gif.animatedGIFWithData(data))
                     return
-                    
                 })
+                
             }
-            
-            self.imagesCache.setObject(imageCacheDir!, forKey: imageURL, cost: cost)
-            
-            successed(image: imageCacheDir!)
-            return
+                
+                var cost = intmax_t(imageCacheDir!.size.width * imageCacheDir!.size.width)
+                
+                self.imagesCache.setObject(imageCacheDir!, forKey: imageURL, cost: cost)
+                
+                successed(image: imageCacheDir!)
+               return
+       
         }
         // 0. 判断是否已经下载，如果已经下载
         if (self.operationsCache.objectForKey(imageURL) != nil) {

@@ -21,7 +21,6 @@ extension UIImageView {
         }
         set {
             if let newValue = newValue {
-                println(newValue)
                 objc_setAssociatedObject(
                     self,
                     &AssociatedKeys.descriptiveNameURL,

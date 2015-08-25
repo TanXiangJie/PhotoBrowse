@@ -16,7 +16,7 @@ var Cla :AnyClass?
 var arrayObj = NSArray()
 var valueObj:String?
 extension NSObject {
-
+    
     /// 通过字典来创建一个模型  @param keyValues 字典 @return 新建的对象如果你的模型中有Number Int 8 32 64等 请写成String 预防类型安全
     class func objectWithKeyValues(Dict:NSDictionary)->Self{
         var objc = self.alloc()
@@ -35,7 +35,7 @@ extension NSObject {
             var types : NSString = NSString(CString: property_getAttributes(propert), encoding: NSUTF8StringEncoding)!
             
             var value :AnyObject? = Dict[keys]
-
+            
             CoustomPrefix = (types as NSString).substringFromIndex(Prefix.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
             
             if !CoustomPrefix!.hasPrefix(Prefix1){
@@ -44,7 +44,7 @@ extension NSObject {
                 if  value != nil{
                     //  自定义类型
                     if   value!.isKindOfClass(NSDictionary.classForCoder()) { // Dic
-
+                        
                         // 根据类型字符串创建类
                         Cla = swiftClassFromString(CustomValueName!)
                         
@@ -62,7 +62,7 @@ extension NSObject {
                 
             }
             if value != nil{
-
+                
                 let strCls:AnyClass = NSString.classForCoder()
                 let Number:AnyClass = NSNumber.classForCoder()
                 let ArrayCls:AnyClass = NSArray.classForCoder()
@@ -75,18 +75,18 @@ extension NSObject {
                 if value!.isKindOfClass(strCls) {//string
                     
                     objc.setValue(value!, forKeyPath:keys as! String)
-
+                    
                 }
                 
                 if  value!.isKindOfClass(Number){ // Number
                     valueObj = String(format: "\(value!)")
-
+                    
                     objc.setValue(valueObj, forKeyPath:keys as! String)
                 }
                 
                 if value!.isKindOfClass(NSURL.classForCoder()){ // url
                     valueObj = String(format: "\(value!)")
-
+                    
                     objc.setValue(valueObj, forKeyPath:keys as! String)
                     
                 }
@@ -94,10 +94,10 @@ extension NSObject {
                     valueObj = String(format: "\(value!)")
                     
                     objc.setValue(valueObj, forKeyPath:keys as! String)
-
+                    
                 }
-
-
+                
+                
             }
             
         }
@@ -107,9 +107,9 @@ extension NSObject {
     }
     
     /// 得到自定义类型的类名 如果你的模型中有Number Int 8 32 64等 请写成String 预防类型安全
-
-  private  class func swiftClassFromString(className: String) -> AnyClass! {
     
+    private  class func swiftClassFromString(className: String) -> AnyClass! {
+        
         if  var appName: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String? {
             
             let typeStr = "\""
@@ -132,25 +132,19 @@ extension NSObject {
     }
     
     /// 通过字典数组来创建一个模型数组 @param keyValuesArray 字典数组 @return 模型数组 如果你的模型中有Number Int 8 32 64等 请写成String 预防类型安全
-
+    
     class func objectArrayWithKeyValuesArray(keyValuesArray:[[String:AnyObject]])->NSArray{
         var modelArray = NSMutableArray()
         var array = NSArray()
         for dict in keyValuesArray{
-//   这里的做判断防止出错不会写了
-//            if keyValuesArray.isKindOfClass([[String:AnyObject]]){
             
             var model:AnyObject = objectWithKeyValues(dict)
-                modelArray.addObject(model)
-                
-//        }else{
-//        打印提示信息可能不是一个字典数组
-//        }
+            modelArray.addObject(model)
             
-        array = modelArray
-    }
+            array = modelArray
+        }
         return array
-}
+    }
     
     /// 通过plist来创建一个模型数组 @param file 文件全路径 @return 新建的对象 如果你的模型中有Number Int 8 32 64等 请写成String 预防类型安全
     
@@ -218,6 +212,6 @@ extension NSObject {
         
         return objc
     }
-
-
+    
+    
 }

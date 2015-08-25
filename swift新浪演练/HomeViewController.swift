@@ -72,13 +72,12 @@ class HomeViewController: UITableViewController {
     
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
-         var cell: HomeTableViewCell?  = HomeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: identifier)
-        
-        cell!.selectionStyle = UITableViewCellSelectionStyle.None
-        cell!.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        cell!.home = array1[indexPath.row] as? HomeVM
-        return cell!
+
+        let cell  = HomeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: identifier)
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        cell.home = array1[indexPath.row] as? HomeVM
+        return cell
     }
     
     func puchVC(){

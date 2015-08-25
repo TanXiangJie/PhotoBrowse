@@ -14,7 +14,7 @@ import UIKit
     var created_at = String()
     
     //    id	int64	微博ID
-    var id = String()
+    var id = Int64()
 //    
 //    //    idstr	string	字符串型的微博ID
     var idstr = String()
@@ -40,13 +40,13 @@ import UIKit
     var retweeted_status :StatusResult?
 //
 //    //    reposts_count	int	转发数
-    var reposts_count = String()
+    var reposts_count = Int()
 //    
 //    //    comments_count	int	评论数
-    var comments_count = String()
+    var comments_count = Int()
 //    
 //    //    attitudes_count	int	表态数
-    var attitudes_count = String()
+    var attitudes_count = Int()
 //    
 //    //    pic_ids	object	微博配图ID。多图时返回多图ID，用来拼接图片url。用返回字段thumbnail_pic的地址配上该返回字段的图片ID，即可得到多个图片url。
     var pic_urls = NSArray()

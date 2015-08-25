@@ -124,7 +124,6 @@ class UserAccount: NSObject,Printable,NSCoding{
         expires_in = aDecoder.decodeDoubleForKey("expires_in") as NSTimeInterval
         expireDate = aDecoder.decodeObjectForKey("expireDate") as! NSDate
         uid = aDecoder.decodeObjectForKey("uid") as! String
-        
         name = aDecoder.decodeObjectForKey("name") as? String
         avatar_large = aDecoder.decodeObjectForKey("avatar_large") as? String
     }

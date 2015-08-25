@@ -53,27 +53,22 @@ class WBstatusToolBar: UIImageView {
         var homeV:StatusResult?{
         
         didSet{
-            var count:String = homeV!.reposts_count
-            var count1:String = homeV!.comments_count
-            var count2:String = homeV!.attitudes_count
-
-            setUpBtnTitle(retweetBtn!, count:(count as NSString).doubleValue)
-            setUpBtnTitle(commentBtn!, count:(count1 as NSString).doubleValue)
-            setUpBtnTitle(unlikeBtn!, count:(count2 as NSString).doubleValue)
+            setUpBtnTitle(retweetBtn!, count:homeV!.reposts_count)
+            setUpBtnTitle(commentBtn!, count:homeV!.comments_count)
+            setUpBtnTitle(unlikeBtn!, count:homeV!.attitudes_count)
 
         }
     }
 
-    func setUpBtnTitle(btn:UIButton,count:Double){
+    func setUpBtnTitle(btn:UIButton,count:Int){
         if count >= 0 {
             if count<10000{
-                var countInt:Int = Int(count)
-                title = String(format: "%d",countInt)
+                title = String(format: "%d",count)
 
             }
 
             if (count > 10000) { // 处理
-                var floatCount:CGFloat = CGFloat(count/10000.0)
+                var floatCount:CGFloat = CGFloat(count/10000)
                title = NSString(format: "%0.1f w" ,floatCount) as String
                 title = title!.stringByReplacingOccurrencesOfString(".0", withString: "")
                 

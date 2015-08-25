@@ -79,7 +79,8 @@ class HomeVM: NSObject {
         var Y:CGFloat = CGRectGetMaxY(originalityFrame!)
         // 有没有转发微博
         if status!.retweeted_status?.user != nil {
-            transmit = status!.retweeted_status?.user.name
+            transmit = "@\( status!.retweeted_status?.user.name)"
+
             setUpTransmitWB()
             
             Y = CGRectGetMaxY(transmitFrame!)
@@ -105,6 +106,7 @@ class HomeVM: NSObject {
         
         let nameX:CGFloat = IconWH+15;
         let nameY:CGFloat = 13;
+        println(status?.user)
         var nameSize:CGSize = (status!.user.name as NSString).sizeWithAttributes([NSFontAttributeName:UIFont.systemFontOfSize(14)])
         originalitynameFrame = CGRect(origin: CGPointMake(nameX, nameY), size: nameSize)
         

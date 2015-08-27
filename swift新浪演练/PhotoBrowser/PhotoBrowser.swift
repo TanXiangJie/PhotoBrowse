@@ -10,10 +10,11 @@ import UIKit
 private var H = UIScreen.mainScreen().bounds.size.height
 private var W =  UIScreen.mainScreen().bounds.size.width
 
-private var transition:CATransition = CATransition()
 /// 大图数组由外界传入
 private var imageBig:[NSURL]?
 class photoBrowser: UIViewController,UIScrollViewDelegate{
+    var transition:CATransition = CATransition()
+    var scrollView:UIScrollView?
     /// 记录当前被点击的图片有外界传入
     var currentPhotoIndex:Int?
     /// 记录下载地址
@@ -53,7 +54,7 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
     }
     // 进场
     func approachImageV(){
-        var Windows:UIWindow = UIApplication.sharedApplication().keyWindow!
+        var Windows = UIApplication.sharedApplication().keyWindow!
         transition.type = imageType[rndtype()]
         transition.subtype  = kCATransitionFromLeft;
         transition.duration = 0.5;
@@ -91,25 +92,22 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(scrollView)
+        scrollView = UIScrollView(frame:CGRectMake(0,0,W,H))
+        scrollView!.userInteractionEnabled = true
+        scrollView!.pagingEnabled = true
+        scrollView!.delegate = self
+        scrollView!.showsHorizontalScrollIndicator = false
+        let tapGesture = UITapGestureRecognizer(target: self, action: "didClick:")
+        scrollView!.addGestureRecognizer(tapGesture)
+        scrollView!.backgroundColor = UIColor.blackColor()
+
+        self.view.addSubview(scrollView!)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
     }
-    /// 懒加载用来提前准备好一段代码
-    private lazy var scrollView: UIScrollView = {
-        var scrollV = UIScrollView(frame:CGRectMake(0,0,W,H))
-        scrollV.userInteractionEnabled = true
-        scrollV.pagingEnabled = true
-        scrollV.delegate = self
-        scrollV.showsHorizontalScrollIndicator = false
-        let tapGesture = UITapGestureRecognizer(target: self, action: "didClick:")
-        scrollV.addGestureRecognizer(tapGesture)
-        scrollV.backgroundColor = UIColor.blackColor()
-        return scrollV
-        }()
     
     /// 选中照片索引 setter方法
     private var selectedIndex: Int?{
@@ -153,12 +151,12 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
 //                
 //
 //                var h = imageBig?.count == 1 ? imageH : 0
-                self.scrollView.contentSize = CGSizeMake(CGFloat(imageBig!.count)*W,0)
-                self.scrollView.contentOffset.x = CGFloat(currentPhotoIndex!)*W
+                self.scrollView!.contentSize = CGSizeMake(CGFloat(imageBig!.count)*W,0)
+                self.scrollView!.contentOffset.x = CGFloat(currentPhotoIndex!)*W
 
                 imageV.frame = CGRectMake(imageX,imageY,imageW ,imageH)
 
-                self.scrollView.addSubview(imageV)
+                self.scrollView!.addSubview(imageV)
                 self.truncationimageV.hidden = true
                 imageV.setImageWithURLString(urlStr)
         
@@ -275,9 +273,9 @@ class photoBrowser: UIViewController,UIScrollViewDelegate{
     func removeImageV(){
         self.view.backgroundColor = UIColor.clearColor()
         self.truncationimageV.hidden = false
-        self.scrollView.backgroundColor = UIColor.clearColor()
+        self.scrollView!.backgroundColor = UIColor.clearColor()
         self.view.backgroundColor = UIColor.clearColor()
-        self.scrollView.removeFromSuperview()
+        self.scrollView!.removeFromSuperview()
         self.saveBtn.removeFromSuperview()
         self.closeBtn.removeFromSuperview()
         

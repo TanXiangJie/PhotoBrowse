@@ -34,8 +34,8 @@ extension String{
         for i in 0..<digestLen {
             hash.appendFormat("%02x", result[i])
         }
-        // 释放内存
         free(result)
+        
         return String(format:hash as String)
     }
 }

@@ -8,8 +8,6 @@
 
 import UIKit
 
-let reuseIdentifier1 = "Cell1"
-
 class AddFriendsViewController: UICollectionViewController {
    
     init(){
@@ -30,7 +28,7 @@ class AddFriendsViewController: UICollectionViewController {
         super.viewDidLoad()
         self.collectionView?.backgroundColor = UIColor.groupTableViewBackgroundColor()
 
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier1)
+        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell1")
 
     }
 
@@ -54,7 +52,7 @@ class AddFriendsViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var lable : UILabel?
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier1, forIndexPath:indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell1", forIndexPath:indexPath) as! UICollectionViewCell
         if indexPath.row == 0{
             lable = UILabel()
             cell.bounds.size.height = 30.0

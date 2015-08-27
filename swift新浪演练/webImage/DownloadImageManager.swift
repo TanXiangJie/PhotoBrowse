@@ -48,7 +48,7 @@ class DownloadImageManager :NSObject {
                 if imageURL.hasSuffix("gif"){
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         var data = NSData(contentsOfFile: imageURL.md5.cacheDir())
-                        successed(image:self.Gif.animatedGIFWithData(data))
+                        successed(image:self.Gif.animatedGIFWithData(data)!)
                         return
                     })
                     
@@ -66,7 +66,7 @@ class DownloadImageManager :NSObject {
             if imageURL.hasSuffix("gif"){
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     var data = NSData(contentsOfFile: imageURL.md5.cacheDir())
-                    successed(image:self.Gif.animatedGIFWithData(data))
+                    successed(image:self.Gif.animatedGIFWithData(data!)!)
                     return
                 })
             

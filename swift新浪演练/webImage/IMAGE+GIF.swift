@@ -10,39 +10,41 @@
 
 import UIKit
 import ImageIO
+import CoreFoundation
 class GIFImage : NSObject {
     
-    func animatedGIFWithData(imageData:NSData?)->UIImage{
-        var animatedImage = UIImage()
-        
+    func animatedGIFWithData(imageData:NSData?)->UIImage?{
+        var animatedImage:UIImage?
+
         if (imageData != nil) {
-            
-            var imageSource = CGImageSourceCreateWithData(imageData, nil)
+
+            var imageSource = CGImageSourceCreateWithData(imageData as! CFDataRef, nil)
             let Count: size_t = CGImageSourceGetCount(imageSource)
-            
             if Count <= 1 {
                 animatedImage = UIImage(data: imageData!)!
                 
             } else {
                 
-                var images = NSMutableArray()
+                var images = [AnyObject]()
                 var duration:NSTimeInterval = 0.00
                 
                 for var i:size_t = 0; i < Count; i++ {
                     var image = CGImageSourceCreateImageAtIndex(imageSource, i, nil)
+                    
                     duration +=  frameDurationAtIndex(i, source: imageSource)
-                    images.addObject(UIImage(CGImage: image, scale: UIScreen.mainScreen().scale, orientation: UIImageOrientation.Up)!)
-            
+                    
+                  images.append(UIImage(CGImage: image, scale: UIScreen.mainScreen().scale, orientation: UIImageOrientation.Up)!)
+
                 }
                 if (duration <= 0.0) {
                     duration = 0.10 * Double(Count)
                 }
                 animatedImage = UIImage.animatedImageWithImages(images as [AnyObject], duration: duration)
             }
-        
+            return animatedImage!
+
         }
-        return animatedImage
-        
+        return nil
     }
  ///GIF 时间处理
  private func frameDurationAtIndex(index:Int,source:CGImageSourceRef)->Double{

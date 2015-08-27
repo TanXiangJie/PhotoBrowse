@@ -10,26 +10,6 @@
 
 import UIKit
 extension UIImageView {
-    private struct AssociatedKeys {
-        static var descriptiveNameURL = "ImageViewURLKey"
-    }
-    // 运行时相关设置关联对象 (关键作用)
-    var descriptiveNameURL:String?
-        {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.descriptiveNameURL) as? String
-        }
-        set {
-            if let newValue = newValue {
-                objc_setAssociatedObject(
-                    self,
-                    &AssociatedKeys.descriptiveNameURL,
-                    newValue as NSString?,
-                    UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                )
-            }
-        }
-    }
 
     ///   根据指定的 url 字符串，下载图像
     func setImageWithURLString(urlStr:String){
@@ -58,5 +38,25 @@ extension UIImageView {
         
         }
     }
- 
+    private struct AssociatedKeys {
+        static var descriptiveNameURL = "ImageViewURLKey"
+    }
+    // 运行时相关设置关联对象 (关键作用)
+    var descriptiveNameURL:String?
+        {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.descriptiveNameURL) as? String
+        }
+        set {
+            if let newValue = newValue {
+                objc_setAssociatedObject(
+                    self,
+                    &AssociatedKeys.descriptiveNameURL,
+                    newValue as NSString?,
+                    UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                )
+            }
+        }
+    }
+
 }

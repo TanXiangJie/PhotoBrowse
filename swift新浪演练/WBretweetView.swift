@@ -49,7 +49,7 @@ class WBretweetView: UIView {
             var homeStatus:StatusResult = homeV!.status!.retweeted_status!
             if homeV?.transmitNameFrame != nil {
                 nameView?.frame = homeV!.transmitNameFrame!
-                nameView?.text = "@\(homeStatus.user.name)"
+                nameView?.text = "@" + homeStatus.user.name!
                 textView?.text = homeStatus.text
                 textView?.frame = homeV!.transmitTextFrame!
 

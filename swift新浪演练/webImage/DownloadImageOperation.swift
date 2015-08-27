@@ -60,7 +60,7 @@ class DownloadImageOperation: NSOperation{
                         if self.imageURL!.hasSuffix("gif"){
                             let Gif = GIFImage()
                             
-                            self.successed!(image:Gif.animatedGIFWithData(data))
+                            self.successed!(image:Gif.animatedGIFWithData(data)!)
                             return
                         }
                         

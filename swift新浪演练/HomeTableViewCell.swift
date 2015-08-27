@@ -9,22 +9,25 @@
 import UIKit
 
 class HomeTableViewCell: UITableViewCell {
-    var OriginalV = WBOriginalView()
+    var OriginalV: WBOriginalView?
     
-    var statusToolBar = WBstatusToolBar(frame: CGRectZero)
+    var statusToolBar:WBstatusToolBar?
     
-    var retweetV = WBretweetView()
+    var retweetV:WBretweetView?
     override  init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     // 添加所有的子控件(原创,转发,工具条)
       super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = UITableViewCellSelectionStyle.None
         self.backgroundColor = UIColor.groupTableViewBackgroundColor()
         // 原创
-        self.addSubview(OriginalV)
+        self.OriginalV = WBOriginalView()
+        self.statusToolBar = WBstatusToolBar(frame: CGRectZero)
+        self.retweetV = WBretweetView()
+        self.addSubview(self.OriginalV!)
         // 转发
-        self.addSubview(statusToolBar)
+        self.addSubview(self.statusToolBar!)
         // 工具条
-        self.addSubview(retweetV)
+        self.addSubview(self.retweetV!)
   }
 
  required init(coder aDecoder: NSCoder) {
@@ -35,22 +38,22 @@ class HomeTableViewCell: UITableViewCell {
         didSet{
             //   设置原创微博的frame
 
-            OriginalV.frame = home!.originalityFrame!
+            self.OriginalV!.frame = home!.originalityFrame!
             //   设置原创微博的内容
-            OriginalV.homeV =  home
+            self.OriginalV!.homeV =  home
 
             if self.home!.status!.retweeted_status != nil{
                 //   这只转发微博的frame
                 if home!.transmitFrame != nil {
-                retweetV.frame = home!.transmitFrame!
+                self.retweetV!.frame = home!.transmitFrame!
                 //   设置转发微薄的内容
-                retweetV.homeV = home
+                self.retweetV!.homeV = home
                 }
             }
             //   设置工具条frame
-            statusToolBar.frame = home!.statusToolBarFrame!
+            self.statusToolBar!.frame = home!.statusToolBarFrame!
             //   设置工具条的内容
-            statusToolBar.homeV = home!.status
+            self.statusToolBar!.homeV = home!.status
 
             }
         

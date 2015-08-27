@@ -11,10 +11,10 @@ import UIKit
 private let WB_HOME_LINE_URL = "https://api.weibo.com/2/statuses/friends_timeline.json"
 /// 加载未读数量 URL 地址
 private let WB_LOAD_UNREAD_URL = "https://rm.api.weibo.com/2/remind/unread_count.json"
-var array = [AnyObject]()
 
 class HomeViewController: UITableViewController {
-    
+    var array = [AnyObject]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +43,7 @@ class HomeViewController: UITableViewController {
                         //   MVVV模式设计 将视图模型存放起来
                         var homeVC = HomeVM()
                         homeVC.status = status
-                       array.append(homeVC)
+                       self.array.append(homeVC)
                     }
                     
                     self.tableView.reloadData()
@@ -71,7 +71,7 @@ class HomeViewController: UITableViewController {
 
         let cell  = HomeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "reuseIdentifierForCell")
         
-        cell.home = array[indexPath.row] as? HomeVM
+        cell.home = self.array[indexPath.row] as? HomeVM
 
         return cell
     }

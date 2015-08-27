@@ -111,8 +111,8 @@ class photosView: UIView {
 
         println(largeURLs![imageV.tag])
 //     弹出图片浏览器
-        var pic = photoBrowser()
-            pic.showPhotos(imageV, images: largeURLs!, currentIndex: imageV.tag)
+            var pic:photoBrowser?
+            pic!.showPhotos(imageV, images: largeURLs!, currentIndex: imageV.tag)
         }
     }
 }

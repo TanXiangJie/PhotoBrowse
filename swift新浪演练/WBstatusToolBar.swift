@@ -19,7 +19,7 @@ class WBstatusToolBar: UIImageView {
       super.init(frame: frame)
         // 1.添加所有的子控件
         setUpAllChildView()
-        self.image = UIImage(named: "timeline_card_bottom_background")!
+     self.image = UIImage(named: "timeline_card_bottom_background")!
      self.userInteractionEnabled = true
     }
 

@@ -45,6 +45,15 @@ class DownloadImageManager :NSObject {
         if image != nil  {
             
             println("从内存加载图像")
+                if imageURL.hasSuffix("gif"){
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        var data = NSData(contentsOfFile: imageURL.md5.cacheDir())
+                        successed(image:self.Gif.animatedGIFWithData(data))
+                        return
+                    })
+                    
+                }
+
             // 直接回调，不再继续
             successed(image: image!)
             return
@@ -55,17 +64,15 @@ class DownloadImageManager :NSObject {
         if (imageCacheDir != nil)  {
             println("从磁盘加载")
             if imageURL.hasSuffix("gif"){
-                /// 一定要异步在主线程更新不然等着卡爆吧
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     var data = NSData(contentsOfFile: imageURL.md5.cacheDir())
                     successed(image:self.Gif.animatedGIFWithData(data))
                     return
                 })
-                
+            
             }
-                
+            
                 var cost = intmax_t(imageCacheDir!.size.width * imageCacheDir!.size.width)
-                
                 self.imagesCache.setObject(imageCacheDir!, forKey: imageURL, cost: cost)
                 
                 successed(image: imageCacheDir!)

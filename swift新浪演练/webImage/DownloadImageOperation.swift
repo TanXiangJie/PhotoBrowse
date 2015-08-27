@@ -13,7 +13,7 @@ class DownloadImageOperation: NSOperation{
     var URLSTR:NSURL?
     var successed:((image:UIImage)->Void)?
     var failed:((error:String)->Void)?
-    
+    var image:UIImage?
     class func downloadImageOpeartionWithURLString(imageUrl:String,successed:(image:UIImage?)->Void,failed:(error:String)->Void)->DownloadImageOperation{
         
         var op:DownloadImageOperation = DownloadImageOperation()
@@ -39,33 +39,40 @@ class DownloadImageOperation: NSOperation{
                 
                 if self.cancelled || data == nil{return}
                 // 将图片的url地址MD5保证唯一性
+                if data!.length/1024 > 1 && imageURL!.hasSuffix("jpg") {
+                    
+                   var oldimage = UIImage(data: data!)
+                   
+                   data = UIImageJPEGRepresentation(oldimage,0.5)
+                
+                }
                 data!.writeToFile(self.imageURL!.md5!.cacheDir(), atomically: true)
-                
+
                 if self.cancelled{return}
-                
-                var image = UIImage(data: data!)
+                 image = UIImage(data: data!)
                 
                 if (self.cancelled){return}
                 
                 // 3. 调用回调方法
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if (self.successed != nil && image != nil ){
+                    if (self.successed != nil && self.image != nil ){
                         
                         if self.imageURL!.hasSuffix("gif"){
                             let Gif = GIFImage()
                             
                             self.successed!(image:Gif.animatedGIFWithData(data))
                             return
-                            
                         }
                         
-                        self.successed!(image: image!)
+                        self.successed!(image: self.image!)
                         println("下载完毕")
                         
                     }
                     
-                    if (self.failed != nil && image == nil ){
+                    if (self.failed != nil && self.image == nil ){
+                       
                         self.failed!(error: "下载失败")
+                
                     }
                     
                 })

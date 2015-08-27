@@ -9,59 +9,50 @@
 import UIKit
 
 class HomeTableViewCell: UITableViewCell {
-    var OriginalV:WBOriginalView?
+    var OriginalV = WBOriginalView()
     
-    var statusToolBar:WBstatusToolBar?
+    var statusToolBar = WBstatusToolBar(frame: CGRectZero)
     
-    var retweetV:WBretweetView?
-    
- override  init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-     super.init(style: style, reuseIdentifier: reuseIdentifier)
+    var retweetV = WBretweetView()
+    override  init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     // 添加所有的子控件(原创,转发,工具条)
-       setUpAllChildView()
-    self.userInteractionEnabled = true
+      super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = UITableViewCellSelectionStyle.None
+        self.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        // 原创
+        self.addSubview(OriginalV)
+        // 转发
+        self.addSubview(statusToolBar)
+        // 工具条
+        self.addSubview(retweetV)
   }
- 
+
  required init(coder aDecoder: NSCoder) {
      fatalError("init(coder:) has not been implemented")
  }
- 
-    func setUpAllChildView(){
-         // 原创
-        OriginalV = WBOriginalView()
-        
-        self.contentView.addSubview(OriginalV!)
-        // 转发
-        statusToolBar = WBstatusToolBar(frame: CGRectZero)
-        self.contentView.addSubview(statusToolBar!)
-        // 工具条
-        retweetV = WBretweetView()
-        self.contentView.addSubview(retweetV!)
-        self.userInteractionEnabled = true
-    }
-    
     
     var home:HomeVM?{
         didSet{
             //   设置原创微博的frame
-            OriginalV?.frame = home!.originalityFrame!
+
+            OriginalV.frame = home!.originalityFrame!
             //   设置原创微博的内容
-            OriginalV?.homeV = home
-            
-            if home?.status?.retweeted_status != nil{
-                //   设置转发微薄的内容
-                retweetV?.homeV = home
+            OriginalV.homeV =  home
+
+            if self.home!.status!.retweeted_status != nil{
                 //   这只转发微博的frame
                 if home!.transmitFrame != nil {
-                retweetV?.frame = home!.transmitFrame!
+                retweetV.frame = home!.transmitFrame!
+                //   设置转发微薄的内容
+                retweetV.homeV = home
                 }
             }
             //   设置工具条frame
-            statusToolBar?.frame = home!.statusToolBarFrame!
+            statusToolBar.frame = home!.statusToolBarFrame!
             //   设置工具条的内容
-            statusToolBar?.homeV = home?.status
-            
-        }
+            statusToolBar.homeV = home!.status
+
+            }
+        
     }
-    
 }

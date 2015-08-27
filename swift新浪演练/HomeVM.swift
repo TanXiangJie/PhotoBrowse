@@ -95,7 +95,6 @@ class HomeVM: NSObject {
         // Cell 的高度
         cellHeight = CGRectGetMaxY(statusToolBarFrame!)+5
 
-        
     }
    
     
@@ -107,7 +106,7 @@ class HomeVM: NSObject {
         let nameX:CGFloat = IconWH+15;
         let nameY:CGFloat = 13;
         println(status?.user)
-        var nameSize:CGSize = (status!.user.name as NSString).sizeWithAttributes([NSFontAttributeName:UIFont.systemFontOfSize(14)])
+        var nameSize:CGSize = (status!.user.name! as NSString).sizeWithAttributes([NSFontAttributeName:UIFont.systemFontOfSize(14)])
         originalitynameFrame = CGRect(origin: CGPointMake(nameX, nameY), size: nameSize)
         
         if status!.user.Vip == true {

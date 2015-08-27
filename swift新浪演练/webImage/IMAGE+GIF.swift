@@ -22,7 +22,9 @@ class GIFImage : NSObject {
             
             if Count <= 1 {
                 animatedImage = UIImage(data: imageData!)!
+                
             } else {
+                
                 var images = NSMutableArray()
                 var duration:NSTimeInterval = 0.00
                 
@@ -30,13 +32,12 @@ class GIFImage : NSObject {
                     var image = CGImageSourceCreateImageAtIndex(imageSource, i, nil)
                     duration +=  frameDurationAtIndex(i, source: imageSource)
                     images.addObject(UIImage(CGImage: image, scale: UIScreen.mainScreen().scale, orientation: UIImageOrientation.Up)!)
-                    
+            
                 }
                 if (duration <= 0.0) {
                     duration = 0.10 * Double(Count)
                 }
                 animatedImage = UIImage.animatedImageWithImages(images as [AnyObject], duration: duration)
-            
             }
         
         }
@@ -65,24 +66,9 @@ class GIFImage : NSObject {
             if duration > 0 && duration < threshold {
                 duration = 0.1
             }
+
         }
         return duration
  }
-    /////////////////////////// 这里没有使用过截图/////////////可以移除
-
-    private func capture(view:UIView)->UIImage{
-        
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0.0);
-        view.layer.renderInContext(UIGraphicsGetCurrentContext())
-        var img:UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return img;
-    }
-    /// 获得截图图片
-    func setSrcImageView(srcImageView:UIImageView)->UIImage
-    {
-       return capture(srcImageView)
-    
-    }
     
 }

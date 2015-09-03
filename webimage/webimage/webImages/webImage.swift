@@ -14,8 +14,11 @@ extension UIImageView {
     func setImageWithURLString(urlStr:String){
         
     if descriptiveNameURL == urlStr {
-       println("地址一致不用重新下载")
-     return
+      
+        println("地址一致不用重新下载")
+    
+        return
+    
     }
         
     // 更换地址取消上次的下载
@@ -43,10 +46,14 @@ extension UIImageView {
     // 运行时相关设置关联对象 
     var descriptiveNameURL:String?
         {
+       
         get {
+            
             return objc_getAssociatedObject(self, &AssociatedKeys.descriptiveNameURL) as? String
         }
+        
         set {
+            
             if let newValue = newValue {
                 objc_setAssociatedObject(
                     self,

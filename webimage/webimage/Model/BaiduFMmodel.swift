@@ -20,7 +20,7 @@ class BaiduFMmodel: NSObject {
 //   tag = "\U767e\U5ea6\U97f3\U4e50\U4eba,\U53e4\U98ce,\U539f\U521b,\U67d4\U60c5,\U60c5\U611f";
 //    title = "\U5531\U98ce\U6708\U65e0\U8fb9";
 //    width = 500;
-    var collectnum:String?
+    var collectnum = String()
     var desc:String?
     var height:String?
     var listenum:String?

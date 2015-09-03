@@ -46,6 +46,7 @@ class DownloadImageOperation: NSOperation{
                    data = UIImageJPEGRepresentation(oldimage,0.5)
                 
                 }
+                
                 data!.writeToFile(self.imageURL!.md5!.cacheDir(), atomically: true)
 
                 if self.cancelled{return}
@@ -55,6 +56,7 @@ class DownloadImageOperation: NSOperation{
                 
                 // 3. 调用回调方法
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
                     if (self.successed != nil && self.image != nil ){
                         
                         if self.imageURL!.hasSuffix("gif"){
@@ -80,7 +82,7 @@ class DownloadImageOperation: NSOperation{
                 
             }
             
-            
         }
     }
+    
 }

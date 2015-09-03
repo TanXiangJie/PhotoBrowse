@@ -9,17 +9,14 @@
 import UIKit
 class BaiduFMViewController: UICollectionViewController {
         private let reuseIdentifier = "Cell"
-        let SIZE = UIScreen.mainScreen().bounds.size
         var listArray = [AnyObject]()
-        let FlowLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let FlowLayout = UICollectionViewFlowLayout()
         
         init(){
             FlowLayout.minimumInteritemSpacing = 5
             FlowLayout.minimumLineSpacing = 5
-            FlowLayout.itemSize = CGSizeMake((SIZE.width-20)/3, 150)
+            FlowLayout.itemSize = CGSizeMake((UIScreen.mainScreen().bounds.size.width-20)/3, 150)
             FlowLayout.scrollDirection = UICollectionViewScrollDirection.Vertical
-            FlowLayout.headerReferenceSize = CGSizeMake(SIZE.width, 25)
-            
             FlowLayout.sectionInset = UIEdgeInsetsMake(0,5, 5, 5)
             super.init(collectionViewLayout: FlowLayout)
         }
@@ -32,16 +29,17 @@ class BaiduFMViewController: UICollectionViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             self.collectionView!.registerClass(BaiduFMcontrollerCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
             self.collectionView?.backgroundColor = UIColor.purpleColor()
-         
+            
+            self.title = "百度FM"
             getSongList()
         }
+
     //获取歌曲分类列表
     func getSongList(){
       netWorkManager.requestJSON(Method.POST, URLString: http_channel_list_url, parameters: nil) { (JSON) -> () in
             for dict in JSON!.objectForKey("content") as! [AnyObject]{
-                self.listArray.append(BaiduFMmodel.objectWithKeyValues(dict as! NSDictionary))
+            self.listArray.append(BaiduFMmodel.objectWithKeyValues(dict as! [String : AnyObject]))
             }
         
             self.collectionView?.reloadData()
@@ -49,6 +47,7 @@ class BaiduFMViewController: UICollectionViewController {
         }
         
 }
+    
         // MARK: UICollectionViewDataSource
     
         override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -59,26 +58,28 @@ class BaiduFMViewController: UICollectionViewController {
         
         override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             //#warning Incomplete method implementation -- Return the number of items in the section
-            return self.listArray.count ?? 0
+            return listArray.count ?? 0
         }
         
         override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! BaiduFMcontrollerCell
             cell.backgroundColor = UIColor.whiteColor()
-            let model = self.listArray[indexPath.item] as! BaiduFMmodel
+            let model = listArray[indexPath.item] as! BaiduFMmodel
             cell.model = model
             return cell
         }
-            override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
             
             super.didReceiveMemoryWarning()
             DownloadImageManager.sharedDownImageManager.clearMemory()
         }
-        override func canBecomeFirstResponder() -> Bool {
-            
-            return true
-        }
+    
+    deinit{
         
+        println("我走了")
+     }
+    
+   
 }
 
 class BaiduFMcontrollerCell: UICollectionViewCell {
@@ -110,4 +111,5 @@ class BaiduFMcontrollerCell: UICollectionViewCell {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 }

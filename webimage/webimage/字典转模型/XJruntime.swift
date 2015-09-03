@@ -7,15 +7,16 @@
 //
 //
 import UIKit
+
 extension NSObject {
     
     /// 通过字典来创建一个模型  @param keyValues 字典 @return 新建的对象如果你的模型中有Number Int 8 32 64等 请写成String 预防类型安全
-    class func objectWithKeyValues(Dict:NSDictionary)->Self{
+    class func objectWithKeyValues(Dict:[String:AnyObject])->Self{
         var objc = self.alloc()
         var count:UInt32 = 0
-        //        var ivars = class_copyIvarList(self.classForCoder(), &count)
-        var properties = class_copyPropertyList(self.classForCoder(),&count)
-        
+        //        var ivars = class_copyIvarList(classForCoder(), &count)
+        var properties = class_copyPropertyList(classForCoder(),&count)
+
         for var i = 0; i < Int(count); ++i{
             //var ivar :Ivar = ivars[i]
             
@@ -24,8 +25,8 @@ extension NSObject {
             var keys : NSString = NSString(CString: property_getName(propert), encoding: NSUTF8StringEncoding)!
             
             var types : NSString = NSString(CString: property_getAttributes(propert), encoding: NSUTF8StringEncoding)!
-            
-            var value :AnyObject? = Dict[keys]
+
+            var value :AnyObject? = Dict[keys as String]
             var CoustomPrefix:String?
             = types.substringFromIndex("T@".lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
             var CustomValueName:String?
@@ -61,6 +62,8 @@ extension NSObject {
             
         }
         
+        free(properties)
+
         return objc
         
     }

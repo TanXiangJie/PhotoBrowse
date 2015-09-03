@@ -21,7 +21,6 @@ class netWorkManager: AFHTTPRequestOperationManager {
         var types = NSMutableSet(set:Manager.responseSerializer.acceptableContentTypes)
         types.addObject("text/html")
         types.addObject("text/plain")
-        types.addObject("application/x-javascript")
         Manager.responseSerializer.acceptableContentTypes = types as Set<NSObject>
         return Manager
         

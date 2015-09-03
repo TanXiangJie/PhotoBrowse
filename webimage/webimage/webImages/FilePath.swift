@@ -35,8 +35,7 @@ extension String{
         for i in 0..<digestLen{
             hash.appendFormat("%02x", result[i])
         }
-        free(result)
-        
+         free(result)
         return String(format:hash as String)
     }
 }

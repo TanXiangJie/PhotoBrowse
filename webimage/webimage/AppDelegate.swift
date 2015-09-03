@@ -13,13 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var MainNav:MainNavViewController?
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let tabBar = mainTabBarViewController()
-        window!.rootViewController = tabBar
         window!.makeKeyAndVisible()
+        let test = testViewController()
+        let nav = UINavigationController(rootViewController: test)
+        window!.rootViewController = nav
+
         return true
     }
     

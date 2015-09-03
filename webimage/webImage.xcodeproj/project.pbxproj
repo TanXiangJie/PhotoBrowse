@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		875929841B96B98E008CF90B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875929831B96B98E008CF90B /* AppDelegate.swift */; };
-		875929891B96B98E008CF90B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875929871B96B98E008CF90B /* Main.storyboard */; };
 		8759298B1B96B98E008CF90B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8759298A1B96B98E008CF90B /* Images.xcassets */; };
 		8759298E1B96B98E008CF90B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8759298C1B96B98E008CF90B /* LaunchScreen.xib */; };
 		8759299A1B96B98F008CF90B /* webImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875929991B96B98F008CF90B /* webImageTests.swift */; };
@@ -35,13 +34,11 @@
 		875929EC1B96C4FC008CF90B /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 875929E31B96C4FC008CF90B /* UIRefreshControl+AFNetworking.m */; };
 		875929ED1B96C4FC008CF90B /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 875929E51B96C4FC008CF90B /* UIWebView+AFNetworking.m */; };
 		875929F01B96C624008CF90B /* XJruntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875929EF1B96C624008CF90B /* XJruntime.swift */; };
-		87592A2E1B972CD9008CF90B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87592A2D1B972CD9008CF90B /* ViewController.swift */; };
 		87592A391B972DBF008CF90B /* BaiduFMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87592A301B972DBF008CF90B /* BaiduFMViewController.swift */; };
-		87592A3C1B972DBF008CF90B /* MainNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87592A331B972DBF008CF90B /* MainNavViewController.swift */; };
-		87592A3D1B972DBF008CF90B /* mainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87592A341B972DBF008CF90B /* mainTabBarViewController.swift */; };
 		87592A3F1B972DBF008CF90B /* netWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87592A361B972DBF008CF90B /* netWorkManager.swift */; };
 		87592A421B972DF6008CF90B /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87592A411B972DF6008CF90B /* Const.swift */; };
 		87592A511B972F32008CF90B /* BaiduFMmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87592A4D1B972F32008CF90B /* BaiduFMmodel.swift */; };
+		87592A561B97434E008CF90B /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87592A551B97434E008CF90B /* testViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +55,6 @@
 		8759297E1B96B98E008CF90B /* webImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = webImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		875929821B96B98E008CF90B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		875929831B96B98E008CF90B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		875929881B96B98E008CF90B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8759298A1B96B98E008CF90B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8759298D1B96B98E008CF90B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		875929931B96B98E008CF90B /* webImageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = webImageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,13 +103,11 @@
 		875929E41B96C4FC008CF90B /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		875929E51B96C4FC008CF90B /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		875929EF1B96C624008CF90B /* XJruntime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XJruntime.swift; sourceTree = "<group>"; };
-		87592A2D1B972CD9008CF90B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		87592A301B972DBF008CF90B /* BaiduFMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaiduFMViewController.swift; sourceTree = "<group>"; };
-		87592A331B972DBF008CF90B /* MainNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavViewController.swift; sourceTree = "<group>"; };
-		87592A341B972DBF008CF90B /* mainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainTabBarViewController.swift; sourceTree = "<group>"; };
 		87592A361B972DBF008CF90B /* netWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = netWorkManager.swift; sourceTree = "<group>"; };
 		87592A411B972DF6008CF90B /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		87592A4D1B972F32008CF90B /* BaiduFMmodel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaiduFMmodel.swift; sourceTree = "<group>"; };
+		87592A551B97434E008CF90B /* testViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,13 +158,10 @@
 				875929831B96B98E008CF90B /* AppDelegate.swift */,
 				87592A411B972DF6008CF90B /* Const.swift */,
 				87592A301B972DBF008CF90B /* BaiduFMViewController.swift */,
-				87592A331B972DBF008CF90B /* MainNavViewController.swift */,
-				87592A341B972DBF008CF90B /* mainTabBarViewController.swift */,
+				87592A551B97434E008CF90B /* testViewController.swift */,
 				87592A361B972DBF008CF90B /* netWorkManager.swift */,
 				8759298A1B96B98E008CF90B /* Images.xcassets */,
 				8759298C1B96B98E008CF90B /* LaunchScreen.xib */,
-				87592A2D1B972CD9008CF90B /* ViewController.swift */,
-				875929871B96B98E008CF90B /* Main.storyboard */,
 				875929811B96B98E008CF90B /* Supporting Files */,
 			);
 			path = webImage;
@@ -360,7 +351,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				875929891B96B98E008CF90B /* Main.storyboard in Resources */,
 				8759298E1B96B98E008CF90B /* LaunchScreen.xib in Resources */,
 				8759298B1B96B98E008CF90B /* Images.xcassets in Resources */,
 			);
@@ -383,21 +373,19 @@
 				875929D01B96C473008CF90B /* AFURLConnectionOperation.m in Sources */,
 				875929CF1B96C473008CF90B /* AFSecurityPolicy.m in Sources */,
 				875929AD1B96B9F2008CF90B /* webImage.swift in Sources */,
-				87592A3C1B972DBF008CF90B /* MainNavViewController.swift in Sources */,
 				875929F01B96C624008CF90B /* XJruntime.swift in Sources */,
 				87592A511B972F32008CF90B /* BaiduFMmodel.swift in Sources */,
 				87592A391B972DBF008CF90B /* BaiduFMViewController.swift in Sources */,
 				875929EB1B96C4FC008CF90B /* UIProgressView+AFNetworking.m in Sources */,
 				875929E81B96C4FC008CF90B /* UIAlertView+AFNetworking.m in Sources */,
-				87592A3D1B972DBF008CF90B /* mainTabBarViewController.swift in Sources */,
 				875929E61B96C4FC008CF90B /* AFNetworkActivityIndicatorManager.m in Sources */,
 				875929CC1B96C473008CF90B /* AFHTTPRequestOperationManager.m in Sources */,
 				875929E91B96C4FC008CF90B /* UIButton+AFNetworking.m in Sources */,
-				87592A2E1B972CD9008CF90B /* ViewController.swift in Sources */,
 				875929E71B96C4FC008CF90B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				875929AB1B96B9F2008CF90B /* FilePath.swift in Sources */,
 				875929ED1B96C4FC008CF90B /* UIWebView+AFNetworking.m in Sources */,
 				875929A91B96B9F2008CF90B /* DownloadImageManager.swift in Sources */,
+				87592A561B97434E008CF90B /* testViewController.swift in Sources */,
 				875929841B96B98E008CF90B /* AppDelegate.swift in Sources */,
 				875929D31B96C473008CF90B /* AFURLSessionManager.m in Sources */,
 				875929D21B96C473008CF90B /* AFURLResponseSerialization.m in Sources */,
@@ -433,14 +421,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		875929871B96B98E008CF90B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				875929881B96B98E008CF90B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8759298C1B96B98E008CF90B /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
